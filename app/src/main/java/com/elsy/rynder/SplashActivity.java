@@ -36,7 +36,6 @@ public class SplashActivity extends AppCompatActivity {
         if(sessionManager.isUserLoggedIn()) {
             ActivityHelper.sendTo(this, MainActivity.class);
         }else  ActivityHelper.sendTo(this, LoginActivity.class);
-        //
     }
 
     private void initUI(){

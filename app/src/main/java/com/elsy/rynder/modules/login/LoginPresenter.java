@@ -42,8 +42,8 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
     public void onValidationSucceeded(String username) {
         tempEmail = "prueba@prueba.com";
         tempPassword = "prueba";
-        tempEmail= tempEmail.toString().trim();
-        tempPassword = tempPassword.toString().trim();
+        tempEmail = tempEmail.trim().toString();
+        tempPassword = tempPassword.trim().toString();
         mLoginView.setProgressIndicator(true);
         mInteractor.doLogin(this, tempEmail, tempPassword,username);
     }
@@ -59,7 +59,7 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
     @Override
     public void onWrongCredentials() {
         mLoginView.setProgressIndicator(false);
-        mLoginView.showLoginFailedMessage("Correo o contraseña incorrecta");
+        mLoginView.showLoginFailedMessage(EMAIL_ERROR);
 
     }
 
@@ -72,12 +72,16 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
     @Override
     public void onNetworkError() {
         mLoginView.setProgressIndicator(false);
-        mLoginView.showLoginFailedMessage("Network error");
+        mLoginView.showLoginFailedMessage(NETWORK_ERROR);
     }
 
     @Override
     public void onServerError() {
         mLoginView.setProgressIndicator(false);
-        mLoginView.showLoginFailedMessage("Server error");
+        mLoginView.showLoginFailedMessage(SERVER_ERROR);
     }
+
+    private final String NETWORK_ERROR = "Network error";
+    private final String SERVER_ERROR = "Server error";
+    private final String EMAIL_ERROR = "Correo o contraseña incorrecta";
 }

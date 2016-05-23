@@ -8,4 +8,9 @@
     <!-- Login -->
     <string name="hint_name">Name</string>
 
+    <string name="lbl_login_sesion">Iniciando Sesión</string>
+    <string name="empty_data_message">Lleno los campos</string>
+    <string name="lbl_btn_login">Login</string>
+    <string name="lbl_loading_message">Cargando</string>
+
 </resources>

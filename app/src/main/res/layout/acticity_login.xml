@@ -43,6 +43,8 @@
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/lbl_btn_login"
+            android:textColor="@color/colorTertiaryText"
             android:background="@color/colorPrimary"/>
 
     </LinearLayout>

@@ -62,17 +62,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void setProgressIndicator(boolean active) {
         if(active){
             mProgressDialog.show();
-            btn_login.setText("Cargando..."/*getString(R.string.lbl_loading_message)*/);
+            btn_login.setText(getString(R.string.lbl_loading_message));
         }else {
             mProgressDialog.dismiss();
-            btn_login.setText("Login"/*getString(R.string.lbl_btn_login)*/);
+            btn_login.setText(getString(R.string.lbl_btn_login));
         }
     }
 
 
     @Override
     public void showEmptyDataMessage() {
-        Snackbar.make(edit_username, "CAMPO VACÍO"/*getString(R.string.empty_data_message)*/, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(edit_username, getString(R.string.empty_data_message), Snackbar.LENGTH_LONG).show();
     }
 
 
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     private void setupProgressDialog() {
         mProgressDialog = new ProgressDialog(LoginActivity.this);
-        mProgressDialog.setMessage("Iniciando Sesión");
+        mProgressDialog.setMessage(getString(R.string.lbl_login_sesion));
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
     }

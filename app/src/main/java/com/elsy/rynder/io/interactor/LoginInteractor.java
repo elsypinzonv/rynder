@@ -34,21 +34,21 @@ public class LoginInteractor {
                 if(response.isSuccessful()){
                     LoginResponse loginResponse = response.body();
 
-                    String tokenSession = response.headers().get("token");
+                    String tokenSession = response.headers().get(KEY_TOKEN);
                     if(tokenSession != null){
                         callback.onLoginSuccess(new User(email,password,userName,tokenSession));
                     }else{
-                        if(response.message().equals("Wrong credentials!")){
+                        if(response.message().equals(WRONG_CREDENTIALS)){
                             callback.onWrongCredentials();
                         } else {
-                            callback.onFailedLogin("Ha ocurrido un error");
+                            callback.onFailedLogin(ERRO_HAPPEN);
                         }
                     }
 
                 } else {
                     try {
                         String messageError = response.errorBody().string();
-                        callback.onFailedLogin("Ups! Verifica tus datos");
+                        callback.onFailedLogin(MESSAGE_DATA_ERROR);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -60,10 +60,10 @@ public class LoginInteractor {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 //TODO: Change to better implementation
-                //callback.onFailedLogin(t.getMessage());
-                if(t.getMessage().equals("Token error!")){
+                callback.onFailedLogin(t.getMessage());
+                if(t.getMessage().equals(TOKEN_ERROR)){
                     callback.onFailedLogin(t.getMessage());
-                } else if (t.getMessage().equals("Wrong credentials!")) {
+                } else if (t.getMessage().equals(WRONG_CREDENTIALS)) {
                     callback.onWrongCredentials();
                 } else {
                     callback.onNetworkError();
@@ -71,5 +71,11 @@ public class LoginInteractor {
             }
         });
     }
+
+    private final String KEY_TOKEN="token";
+    private final String ERRO_HAPPEN ="Ha ocurrido un error";
+    private final String MESSAGE_DATA_ERROR= "Ups! Verifica tus datos";
+    private final String TOKEN_ERROR="Token error!";
+    private final String WRONG_CREDENTIALS ="Wrong credentials!";
 
 }
