@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Rynder</string>
+
+    <!-- Splash Activity -->
+    <string name="app_message">Your restaurant finder\n</string>
+    <string name="splash_footer">Made with love by <b>SnotSoft</b></string>
+
+    <!-- Login -->
+    <string name="hint_name">Name</string>
+
 </resources>

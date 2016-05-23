@@ -22,5 +22,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.google.code.gson:gson:$rootProject.gson"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.converterGson"
+    compile "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+
 }
