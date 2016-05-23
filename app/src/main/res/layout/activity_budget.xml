@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@android:color/transparent"
+    android:padding="15dp"
+   >
+
+
+    <RelativeLayout
+        android:id="@+id/budget_range"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        >
+
+        <TextView
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_min_budget"
+            android:textColor="@android:color/white"
+            android:layout_margin="5dp"
+            android:textSize="24dp"
+            android:layout_alignParentLeft="true"
+            />
+
+
+        <TextView
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_max_budget"
+            android:textColor="@android:color/white"
+            android:layout_margin="5dp"
+            android:textSize="24dp"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <com.edmodo.rangebar.RangeBar
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/budget"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/budget_range"
+        android:layout_centerHorizontal="true"
+        custom:tickCount="2010"
+        custom:thumbColorNormal="@color/colorPrimary"
+        custom:thumbColorPressed="@color/colorPrimaryLigth"
+        custom:connectingLineColor="@color/colorTertiaryText"
+        custom:barColor="@android:color/darker_gray"
+        custom:barWeight="10px"
+        custom:tickHeight="0dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/budget"
+        android:layout_above="@+id/search"
+        android:gravity="bottom|center"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_budget"
+            android:textColor="@android:color/white"
+            android:layout_margin="15dp"
+            android:textSize="26dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_budget_description"
+            android:textColor="@android:color/white"
+            android:layout_margin="15dp"
+            android:textSize="24dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/lbl_btn_search_options"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        />
+
+</RelativeLayout>
