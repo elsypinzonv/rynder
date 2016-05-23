@@ -1,0 +1,15 @@
+# IntelliJ files
+.idea
+*.iml
+*.apk
+
+# Maven output folder
+target
+
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
