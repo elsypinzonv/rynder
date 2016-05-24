@@ -68,7 +68,6 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(this,"Resume",Toast.LENGTH_LONG).show();
         mActionsListener.loadRestaurants(false);
     }
 
@@ -92,7 +91,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
             markRestaurant(restaurant);
         }
 
-        Toast.makeText(this,"actualizando",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"actualizando restaurantes cercanos",Toast.LENGTH_LONG).show();
 
     }
 
