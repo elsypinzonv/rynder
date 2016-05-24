@@ -13,4 +13,20 @@
     <string name="lbl_btn_login">Login</string>
     <string name="lbl_loading_message">Cargando</string>
 
+
+    <!-- Maps -->
+    <string name="google_maps_key">AIzaSyBHpBKuwXZe5yhN-W5vWT-Yz6evD_P19g0</string>
+
+    <!--Menu -->
+    <string name="lb_budget">Presupuesto</string>
+    <string name="lb_logout">Cerrar sesión</string>
+
+    <!-- Budget -->
+    <string name="lbl_budget">Presupuesto</string>
+    <string name="lbl_budget_description">Determina cuanto dinero puedes gastar</string>
+    <string name="lbl_btn_search_options">Buscar opciones</string>
+    <string name="lbl_min_budget">MX$100</string>
+    <string name="lbl_max_budget">MX$1030</string>
+
+
 </resources>

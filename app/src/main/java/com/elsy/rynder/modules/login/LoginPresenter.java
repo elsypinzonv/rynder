@@ -4,25 +4,35 @@ package com.elsy.rynder.modules.login;
 import com.elsy.rynder.domain.User;
 import com.elsy.rynder.io.callbacks.LoginCallback;
 import com.elsy.rynder.io.interactor.LoginInteractor;
+import com.elsy.rynder.utils.GPSDataLoader;
+import com.elsy.rynder.utils.Injection;
+import com.elsy.rynder.utils.preferences_manager.BudgetPreferencesManager;
+import com.elsy.rynder.utils.preferences_manager.LocationPreferencesManager;
 import com.elsy.rynder.utils.preferences_manager.UserSessionManager;
 
 public class LoginPresenter implements LoginContract.UserActionsListener, LoginCallback {
 
     private LoginContract.View mLoginView;
     private UserSessionManager mSessionManager;
+    private LocationPreferencesManager mLocationManager;
+    private BudgetPreferencesManager mBudgetManager;
+    private GPSDataLoader mGPSDataLoader;
     private LoginInteractor mInteractor;
-
     private String tempEmail;
     private String tempPassword;
 
     public LoginPresenter(
             LoginContract.View mLoginView,
             LoginInteractor interactor,
-            UserSessionManager sessionManager
+            UserSessionManager sessionManager,
+            LocationPreferencesManager locationManager,
+            BudgetPreferencesManager budgetManager
     ) {
         this.mLoginView = mLoginView;
-        mInteractor = interactor;
-        mSessionManager = sessionManager;
+        this.mInteractor = interactor;
+        this.mSessionManager = sessionManager;
+        this.mLocationManager = locationManager;
+        this.mBudgetManager = budgetManager;
     }
 
     @Override
@@ -51,9 +61,12 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
 
     @Override
     public void onLoginSuccess(User user) {
-        mLoginView.setProgressIndicator(false);
+
         mSessionManager.createUserLoginSession(user.getUsername(), user.getTokeSession());
         mLoginView.onLoginResult(true, 1);
+        mLocationManager.registerLocationValues(20.994212,-89.646084);
+        mBudgetManager.registerBudgetValues(0,2000);
+        mLoginView.setProgressIndicator(false);
     }
 
     @Override

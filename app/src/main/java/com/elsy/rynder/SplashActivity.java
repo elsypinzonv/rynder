@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.elsy.rynder.modules.login.LoginActivity;
-import com.elsy.rynder.modules.maps.MainActivity;
+import com.elsy.rynder.modules.maps.MapActivity;
 import com.elsy.rynder.utils.ActivityHelper;
-import com.elsy.rynder.utils.Injection;
 import com.elsy.rynder.utils.TextViewUtils;
 import com.elsy.rynder.utils.preferences_manager.UserSessionManager;
 
@@ -34,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
     private void sendTo(){
         final UserSessionManager sessionManager = new UserSessionManager(SplashActivity.this);
         if(sessionManager.isUserLoggedIn()) {
-            ActivityHelper.sendTo(this, MainActivity.class);
+            ActivityHelper.sendTo(this, MapActivity.class);
         }else  ActivityHelper.sendTo(this, LoginActivity.class);
     }
 
