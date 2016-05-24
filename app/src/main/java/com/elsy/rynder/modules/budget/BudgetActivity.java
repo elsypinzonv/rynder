@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.edmodo.rangebar.RangeBar;
 import com.elsy.rynder.R;
+import com.elsy.rynder.utils.Injection;
+import com.elsy.rynder.utils.preferences_manager.BudgetPreferencesManager;
 
 
 public class BudgetActivity extends AppCompatActivity {
@@ -18,14 +20,14 @@ public class BudgetActivity extends AppCompatActivity {
     private final int MIN_VALUE=0;
     private final int MAX_VALUE=2000;
     private final String CURRENCY="MX";
-  //  private BudgetPreferencesManager budgetPreferences;
+    private BudgetPreferencesManager budgetPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
         initUI();
-       // budgetPreferences = Injection.provideBudgetPreferencesManager(BudgetActivity.this);
+       budgetPreferences = Injection.provideBudgetPreferencesManager(BudgetActivity.this);
         initRangerBudget();
         ranger_budget.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
             @Override
@@ -37,21 +39,15 @@ public class BudgetActivity extends AppCompatActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToHungryLevel();
+                goMap();
             }
         });
 
     }
 
-    private void goToHungryLevel(){
-     /*   mGPSLoader.loadLastKnownLocation(new GPSDataLoader.OnLocationLoaded() {
-            @Override
-            public void onLocationLoadFinished(double lat, double lng) {
-                budgetPreferences.registerBudgetValues(getMin(),getMax());
-                ActivityHelper.sendTo(BudgetActivity.this, MainDrawerActivity.class);
-            }
-        }); */
-
+    private void goMap(){
+        budgetPreferences.registerBudgetValues(getMin(),getMax());
+        finish();
     }
 
     private void updateValues(int leftThumbIndex, int rightThumbIndex){
@@ -64,13 +60,13 @@ public class BudgetActivity extends AppCompatActivity {
     private void initRangerBudget(){
         int min,max;
 
-    /*    if(budgetPreferences.hasAlreadyChooseBudget()){
+        if(budgetPreferences.hasAlreadyChooseBudget()){
             min=budgetPreferences.getBudgetMin();
             max=budgetPreferences.getBudgetMax();
-        }else{ */
+        }else{
             min=getMin();
             max=getMax();
-        //}
+        }
         ranger_budget.setThumbIndices(min,max);
         ranger_left.setText(min+CURRENCY);
         ranger_right.setText(max+CURRENCY);
