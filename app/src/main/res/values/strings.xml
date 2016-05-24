@@ -18,7 +18,7 @@
     <string name="google_maps_key">AIzaSyBHpBKuwXZe5yhN-W5vWT-Yz6evD_P19g0</string>
 
     <!--Menu -->
-    <string name="lb_budget">Presumuesto</string>
+    <string name="lb_budget">Presupuesto</string>
     <string name="lb_logout">Cerrar sesión</string>
 
     <!-- Budget -->
