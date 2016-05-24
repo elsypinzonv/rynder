@@ -61,11 +61,12 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
 
     @Override
     public void onLoginSuccess(User user) {
-        mLoginView.setProgressIndicator(false);
+
         mSessionManager.createUserLoginSession(user.getUsername(), user.getTokeSession());
         mLoginView.onLoginResult(true, 1);
         mLocationManager.registerLocationValues(20.994212,-89.646084);
         mBudgetManager.registerBudgetValues(0,2000);
+        mLoginView.setProgressIndicator(false);
     }
 
     @Override

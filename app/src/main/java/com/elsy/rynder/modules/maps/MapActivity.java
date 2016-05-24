@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements MapContract.View, MapContract.Map, OnMapReadyCallback {
@@ -42,6 +43,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
     private GoogleMap mMap = null;
     private LocationPreferencesManager locationManager;
     private Marker mMarker;
+    private ArrayList<Marker> restaurantsMarks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
         setContentView(R.layout.activity_map);
         initUI();
         initToolbar();
+        restaurantsMarks = new ArrayList<>();
         locationManager =Injection.provideLocationPreferencesManager(this);
         gpsDataLoader = new GPSDataLoader(this, locationManager,this);
         mActionsListener = new MapPresenter(
@@ -57,7 +60,6 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
                 Injection.provideUserSessionManager(this),
                 locationManager,
                 Injection.provideBudgetPreferencesManager(this)
-               // new GPSDataLoader(this, locationManager,this)
         );
         mProgressDialog = ActivityHelper.createModalProgressDialog(this);
 
@@ -66,7 +68,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
     @Override
     public void onResume() {
         super.onResume();
-       // mActionsListener.loadRestaurants(false);
+        mActionsListener.loadRestaurants(false);
     }
 
 
@@ -82,8 +84,15 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     @Override
     public void showRestaurants(List<Restaurant> restaurants) {
+        for (Marker mark: restaurantsMarks){
+            mark.remove();
+        }
+        for(Restaurant restaurant: restaurants){
+            markRestaurant(restaurant);
+        }
+
         Toast.makeText(this,"actualizando",Toast.LENGTH_LONG).show();
-       //actualizar iconos del mapa
+
     }
 
     @Override
@@ -141,7 +150,6 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
         this.mMap =googleMap;
         if(locationManager.hasAlreadyChooseLocation()){
             setupMarker();
-
         }
     }
 
@@ -154,7 +162,17 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     @Override
     public void updateRestaurantsMarks() {
+        mActionsListener.loadRestaurants(false);
+    }
 
+    private void markRestaurant(Restaurant restaurant){
+        LatLng point = new LatLng(restaurant.getLocationLat(), restaurant.getLocationLng());
+       restaurantsMarks.add(mMap.addMarker(
+                new MarkerOptions()
+                        .position(point)
+                        .title(restaurant.getName())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+        ));
     }
 
     private void zoomToCurrentLatLngPosition(LatLng initialPoint) {
@@ -171,10 +189,8 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
                         .position(initialPoint)
                         .title("Mi ubicacion")
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_person))
-                        //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
         );
         zoomToCurrentLatLngPosition(initialPoint);
-        Toast.makeText(this, "Marcando",Toast.LENGTH_LONG).show();
-    }
+}
 
 }

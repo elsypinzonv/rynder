@@ -28,28 +28,43 @@ public class GPSDataLoader implements LocationListener {
     private Location mExpectedLocation;
     private LocationManager mManager;
     private MapContract.Map mActionListener;
+    private boolean firstLocation;
     private int STATE = 0;
     private final int ON_DANGER = 2;
-    private final int ON_WARNING = 1;
     private final int ON_USABLE = 0;
-    protected final int APP_USABLE_RADIUS = 100;
-    protected final int SAFE_RADIUS = 85;
+    protected final int APP_USABLE_RADIUS = 50;
 
     public GPSDataLoader(Context context, LocationPreferencesManager manager, MapContract.Map view) {
         mContext = context;
         mLocationManager = manager;
         mActionListener = view;
-        this.mExpectedLocation = getExpectedLocation();
+        firstLocation= true;
         this.mManager = getManager();
+        this.mExpectedLocation = getExpectedLocation();
     }
 
     @Override
     public void onLocationChanged(Location location) {
+
         double lat = location.getLatitude();
         double lng = location.getLongitude();
-        mLocationManager.registerLocationValues(lat, lng);
+        if(firstLocation){
+            firstLocation=false;
+            mLocationManager.registerLocationValues(lat, lng);
+            mExpectedLocation = getExpectedLocation();
+        }
         mActionListener.updateMark(lat,lng);
-        Toast.makeText(mContext,lat+" locationChanged  "+lng, Toast.LENGTH_LONG).show();
+      float[] results = new float[1];
+        Location.distanceBetween(
+                mExpectedLocation.getLatitude(),
+                mExpectedLocation.getLongitude(),
+                lat,
+                lng,
+                results
+        );
+        float currentDistance = results[0];
+        onLocationUpdated(location, currentDistance);
+
     }
 
     @Override
@@ -69,7 +84,6 @@ public class GPSDataLoader implements LocationListener {
 
    protected Location getExpectedLocation() {
         Location expected = new Location("");
-       //TODO: Obtener la ubicación actual.
         expected.setLatitude(mLocationManager.getLatitude());
         expected.setLongitude(mLocationManager.getLongitude());
 
@@ -115,10 +129,9 @@ public class GPSDataLoader implements LocationListener {
                 }
             });
             dialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
                 @Override
                 public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                   // forceLogout();
+                   //TODO: MORIRA, PONER QUE SE DESLOGUE
                 }
             });
             dialog.show();
@@ -154,28 +167,12 @@ public class GPSDataLoader implements LocationListener {
                                 PackageManager.PERMISSION_GRANTED;
     }
 
-    protected void onLocationUpdated(Location currentLocation, float currentDistance){
-
-        if(  currentDistance > APP_USABLE_RADIUS ){
-
-            if( STATE != ON_DANGER){
-                STATE = ON_DANGER;
-                //onDangerArea( currentLocation , currentDistance );
-            }
-
-        }else if( currentDistance > SAFE_RADIUS){
-
-            if( STATE != ON_WARNING){
-                STATE = ON_WARNING;
-               // onWarningArea( currentLocation , currentDistance );
-            }
-
-        }else{
-
-            if( STATE != ON_USABLE ){
-                STATE = ON_USABLE;
-              //  onUsableArea( currentLocation , currentDistance );
-            }
+   protected void onLocationUpdated(Location currentLocation, float currentDistance){
+        if( currentDistance > APP_USABLE_RADIUS){
+            Toast.makeText(mContext, currentDistance+" Se alejó lo suficiente para actualizar Restaurantes",Toast.LENGTH_LONG).show();
+            mLocationManager.registerLocationValues(currentLocation.getLatitude(), currentLocation.getLongitude());
+            mExpectedLocation = currentLocation;
+            mActionListener.updateRestaurantsMarks();
         }
     }
 
