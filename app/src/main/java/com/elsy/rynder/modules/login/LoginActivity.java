@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.elsy.rynder.R;
 import com.elsy.rynder.modules.maps.MapActivity;
 import com.elsy.rynder.utils.ActivityHelper;
@@ -37,7 +36,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         mActionsListener = new LoginPresenter(this,
                 Injection.provideLoginInteractor(),
-                Injection.provideUserSessionManager(getApplicationContext())
+                Injection.provideUserSessionManager(getApplicationContext()),
+                Injection.provideLocationPreferencesManager(getApplicationContext()),
+                Injection.provideBudgetPreferencesManager(getApplicationContext())
         );
 
         btn_login.setOnClickListener(new View.OnClickListener() {
