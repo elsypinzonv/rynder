@@ -30,4 +30,5 @@ ext {
     retrofit = '2.0.0'
     playServices = '8.4.0'
     edmodo = '1.0.0'
+    picasso = '2.5.2'
 }

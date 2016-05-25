@@ -31,5 +31,6 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
     compile "com.google.android.gms:play-services:$rootProject.playServices"
     compile "com.edmodo:rangebar:$rootProject.edmodo"
+    compile "com.squareup.picasso:picasso:$rootProject.picasso"
     compile 'com.estimote:sdk:0.9.4@aar'
 }

@@ -53,6 +53,10 @@
     android:name=".modules.budget.BudgetActivity"
     android:theme="@style/Theme.Budget"></activity>
 
+    <activity
+        android:name=".modules.restaurant_profile.RestaurantProfile"
+        android:theme="@style/Theme.Budget"></activity>
+
     </application>
 
     </manifest>
