@@ -1,17 +1,17 @@
 package com.elsy.rynder.modules.maps;
 
+import android.location.Location;
 import android.support.annotation.NonNull;
 
 import com.elsy.rynder.domain.Restaurant;
 import com.elsy.rynder.io.callbacks.RestaurantsCallback;
 import com.elsy.rynder.io.interactor.RestaurantsInteractor;
-import com.elsy.rynder.utils.GPSDataLoader;
+import com.elsy.rynder.utils.GetRestaurantUtil;
 import com.elsy.rynder.utils.preferences_manager.BudgetPreferencesManager;
 import com.elsy.rynder.utils.preferences_manager.LocationPreferencesManager;
 import com.elsy.rynder.utils.preferences_manager.UserSessionManager;
-
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
@@ -55,8 +55,8 @@ public class MapPresenter implements MapContract.UserActionsListener, Restaurant
     }
 
     @Override
-    public void openRestaurantProfile(@NonNull Restaurant restaurant) {
-        checkNotNull(restaurant);
+    public void openRestaurantProfile(List<Restaurant> restaurants) {
+        Restaurant restaurant =GetRestaurantUtil.getRestaurant(restaurants,mLocationPreferences.getLatitude(),mLocationPreferences.getLongitude());
         mView.showRestaurantProfileUI(restaurant.getId(),restaurant);
     }
 
