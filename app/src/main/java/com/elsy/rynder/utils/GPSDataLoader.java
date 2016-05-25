@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
@@ -25,16 +24,16 @@ public class GPSDataLoader implements LocationListener {
 
     private Context mContext;
     private LocationPreferencesManager mLocationManager;
-    private Location mExpectedLocation;
+    private android.location.Location mExpectedLocation;
     private LocationManager mManager;
-    private MapContract.Map mActionListener;
+    private MapContract.Location mActionListener;
     private boolean firstLocation;
     private int STATE = 0;
     private final int ON_DANGER = 2;
     private final int ON_USABLE = 0;
     protected final int APP_USABLE_RADIUS = 50;
 
-    public GPSDataLoader(Context context, LocationPreferencesManager manager, MapContract.Map view) {
+    public GPSDataLoader(Context context, LocationPreferencesManager manager, MapContract.Location view) {
         mContext = context;
         mLocationManager = manager;
         mActionListener = view;
@@ -44,7 +43,7 @@ public class GPSDataLoader implements LocationListener {
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(android.location.Location location) {
 
         double lat = location.getLatitude();
         double lng = location.getLongitude();
@@ -55,7 +54,7 @@ public class GPSDataLoader implements LocationListener {
         }
         mActionListener.updateMark(lat,lng);
       float[] results = new float[1];
-        Location.distanceBetween(
+        android.location.Location.distanceBetween(
                 mExpectedLocation.getLatitude(),
                 mExpectedLocation.getLongitude(),
                 lat,
@@ -82,8 +81,8 @@ public class GPSDataLoader implements LocationListener {
 
     }
 
-   protected Location getExpectedLocation() {
-        Location expected = new Location("");
+   protected android.location.Location getExpectedLocation() {
+        android.location.Location expected = new android.location.Location("");
         expected.setLatitude(mLocationManager.getLatitude());
         expected.setLongitude(mLocationManager.getLongitude());
 
@@ -167,7 +166,7 @@ public class GPSDataLoader implements LocationListener {
                                 PackageManager.PERMISSION_GRANTED;
     }
 
-   protected void onLocationUpdated(Location currentLocation, float currentDistance){
+   protected void onLocationUpdated(android.location.Location currentLocation, float currentDistance){
         if( currentDistance > APP_USABLE_RADIUS){
             Toast.makeText(mContext, currentDistance+" Se alejó lo suficiente para actualizar Restaurantes",Toast.LENGTH_LONG).show();
             mLocationManager.registerLocationValues(currentLocation.getLatitude(), currentLocation.getLongitude());

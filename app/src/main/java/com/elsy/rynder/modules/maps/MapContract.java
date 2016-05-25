@@ -15,12 +15,12 @@ public interface MapContract {
 
         void showRestaurants(List<Restaurant> restaurants);
 
-        void showRestaurantProfileUI(String id, Restaurant restaurant);
-
         void showErrorMessage(String message);
 
+        void showRestaurantProfileUI(String id, Restaurant restaurant);
+
     }
-    interface Map {
+    interface Location {
 
         void updateMark(double lat, double lng);
 
@@ -31,8 +31,15 @@ public interface MapContract {
 
         void loadRestaurants(boolean forceUpdate);
 
-        void openRestaurantProfile(Restaurant restaurant);
+        void openRestaurantProfile(List<Restaurant> restaurants);
+    }
 
+    interface Beacon {
 
+        void notifyDontHaveBluetooth();
+
+        void activeBluetooth();
+
+        void updateView();
     }
 }
