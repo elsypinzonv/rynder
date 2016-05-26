@@ -29,7 +29,8 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:$rootProject.converterGson"
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
-    compile "com.google.android.gms:play-services:$rootProject.playServices"
+    compile "com.google.android.gms:play-services-maps:$rootProject.playServices"
+    compile "com.google.android.gms:play-services-location:$rootProject.playServices"
     compile "com.edmodo:rangebar:$rootProject.edmodo"
     compile "com.squareup.picasso:picasso:$rootProject.picasso"
     compile 'com.estimote:sdk:0.9.4@aar'

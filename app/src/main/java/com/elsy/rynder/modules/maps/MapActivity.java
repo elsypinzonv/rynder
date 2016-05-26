@@ -78,6 +78,10 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
         mActionsListener.loadRestaurants(false);
     }
 
+    public void onDestroy(){
+        super.onDestroy();
+        beaconFindManager.destroy();
+    }
 
     @Override
     public void setProgressIndicator(boolean active) {

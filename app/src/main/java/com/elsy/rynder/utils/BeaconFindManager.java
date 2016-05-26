@@ -49,6 +49,10 @@ public class BeaconFindManager implements BeaconManager.MonitoringListener {
         }
     }
 
+    public void destroy(){
+        this.mManager.disconnect();
+    }
+
     private BeaconManager getBeaconManager() {
 
         final BeaconManager beaconManager = new BeaconManager(mContext);
@@ -59,7 +63,7 @@ public class BeaconFindManager implements BeaconManager.MonitoringListener {
             public void onServiceReady() {
                 beaconManager.startMonitoring(new Region(
                         "monitored region",
-                        UUID.fromString("C8AB1EA5-6A81-475E-9AAF-8DAB38E8E7AA"),
+                        UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"),
                         63463, 21120));
             }
         });
