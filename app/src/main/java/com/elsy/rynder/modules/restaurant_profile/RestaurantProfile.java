@@ -49,8 +49,8 @@ public class RestaurantProfile extends AppCompatActivity implements RestaurantPr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_profile);
-        setSupportActionBar(toolbar);
         initUI();
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mActionsListener = new RestaurantProfilePresenter(
@@ -197,6 +197,7 @@ public class RestaurantProfile extends AppCompatActivity implements RestaurantPr
     private void initUI(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         scheduleTextView = (TextView) findViewById(R.id.schedule);
+        addressTextView = (TextView) findViewById(R.id.adress);
         typeTextView =  (TextView) findViewById(R.id.type);
         phoneTextView =  (TextView) findViewById(R.id.phone);
         restaurantImageView = (ImageView) findViewById(R.id.restaurant);

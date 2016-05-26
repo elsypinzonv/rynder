@@ -151,6 +151,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
                 return true;
             case R.id.logout:
                 doLogout();
+
                 return true;
 
             default:
