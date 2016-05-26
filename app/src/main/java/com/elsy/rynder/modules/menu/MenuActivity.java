@@ -25,10 +25,10 @@ public class MenuActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),menu,this);
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +39,22 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
+    public void onMoveMore(){
+        int size =menu.getSections().size();
+        int postion = mViewPager.getCurrentItem();
+        if(postion < size){
+            mViewPager.setCurrentItem(postion+1);
+        }
+    }
+
+    public void onMoveLess(){
+        int size =menu.getSections().size();
+        int postion = mViewPager.getCurrentItem();
+        if(postion > 0){
+            mViewPager.setCurrentItem(postion-1);
+        }
+
+    }
 
 
 }
