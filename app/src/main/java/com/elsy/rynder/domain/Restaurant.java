@@ -35,7 +35,7 @@ public class Restaurant implements Serializable {
     private double averagePrice;
 
     @SerializedName("phone_numbers")
-    private ArrayList<Phone> phoneNumbers;
+    private ArrayList<RestaurantPhone> restaurantPhoneNumbers;
 
     @SerializedName("schedules")
     private ArrayList<Schedule> schedules;
@@ -118,12 +118,12 @@ public class Restaurant implements Serializable {
         this.averagePrice = averagePrice;
     }
 
-    public ArrayList<Phone> getPhoneNumbers() {
-        return phoneNumbers;
+    public ArrayList<RestaurantPhone> getRestaurantPhoneNumbers() {
+        return restaurantPhoneNumbers;
     }
 
-    public void setPhoneNumbers(ArrayList<Phone> phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
+    public void setRestaurantPhoneNumbers(ArrayList<RestaurantPhone> restaurantPhoneNumbers) {
+        this.restaurantPhoneNumbers = restaurantPhoneNumbers;
     }
 
     public ArrayList<Schedule> getSchedules() {

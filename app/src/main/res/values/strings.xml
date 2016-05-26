@@ -28,5 +28,8 @@
     <string name="lbl_min_budget">MX$100</string>
     <string name="lbl_max_budget">MX$1030</string>
 
+    <!-- menu -->
+    <string name="lbl_btn_view_menu">Ver menu</string>
+    <string name="lbl_tx_menu">Menu</string>
 
 </resources>

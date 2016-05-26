@@ -3,7 +3,7 @@ package com.elsy.rynder.domain;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Phone {
+public class RestaurantPhone {
 
     @SerializedName("number")
     private String number;
