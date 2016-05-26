@@ -147,8 +147,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.budget:
-                //ActivityHelper.begin(this, BudgetActivity.class);
-                mActionsListener.openRestaurantProfile(restaurantList);
+                ActivityHelper.begin(this, BudgetActivity.class);
                 return true;
             case R.id.logout:
                 doLogout();
