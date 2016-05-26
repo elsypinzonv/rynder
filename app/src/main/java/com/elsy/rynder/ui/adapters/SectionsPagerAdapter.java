@@ -1,4 +1,4 @@
-package com.elsy.rynder.modules.menu;
+package com.elsy.rynder.ui.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.elsy.rynder.domain.Menu;
+import com.elsy.rynder.ui.fragments.PlaceholderFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
