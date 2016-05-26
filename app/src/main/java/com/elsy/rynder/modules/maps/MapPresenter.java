@@ -23,7 +23,7 @@ public class MapPresenter implements MapContract.UserActionsListener, Restaurant
     private UserSessionManager mSessionManager;
     private LocationPreferencesManager mLocationPreferences;
     private BudgetPreferencesManager mBudgetPreferences;
-  //  private GPSDataLoader mGPSDataLoader;
+  //  private GPSManager mGPSDataLoader;
 
     public MapPresenter(
             @NonNull MapContract.View view,
@@ -31,7 +31,7 @@ public class MapPresenter implements MapContract.UserActionsListener, Restaurant
             @NonNull UserSessionManager sessionManager,
             @NonNull LocationPreferencesManager locationPreferences,
             @NonNull BudgetPreferencesManager budgetPreferences
-          //  @NonNull GPSDataLoader gpsDataLoader
+          //  @NonNull GPSManager gpsDataLoader
     ) {
         mInteractor = checkNotNull(interactor);
         mView = checkNotNull(view);

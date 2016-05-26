@@ -5,16 +5,13 @@ import com.elsy.rynder.domain.User;
 import com.elsy.rynder.io.callbacks.LoginCallback;
 import com.elsy.rynder.io.interactor.LoginInteractor;
 import com.elsy.rynder.utils.GPSDataLoader;
-import com.elsy.rynder.utils.Injection;
 import com.elsy.rynder.utils.preferences_manager.BudgetPreferencesManager;
-import com.elsy.rynder.utils.preferences_manager.LocationPreferencesManager;
 import com.elsy.rynder.utils.preferences_manager.UserSessionManager;
 
-public class LoginPresenter implements LoginContract.UserActionsListener, LoginCallback {
+public class LoginPresenter implements LoginContract.UserActionsListener, LoginCallback, GPSDataLoader.OnLocationLoaded {
 
     private LoginContract.View mLoginView;
     private UserSessionManager mSessionManager;
-    private LocationPreferencesManager mLocationManager;
     private BudgetPreferencesManager mBudgetManager;
     private GPSDataLoader mGPSDataLoader;
     private LoginInteractor mInteractor;
@@ -25,14 +22,14 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
             LoginContract.View mLoginView,
             LoginInteractor interactor,
             UserSessionManager sessionManager,
-            LocationPreferencesManager locationManager,
-            BudgetPreferencesManager budgetManager
+            BudgetPreferencesManager budgetManager,
+            GPSDataLoader gpsDataLoader
     ) {
         this.mLoginView = mLoginView;
         this.mInteractor = interactor;
         this.mSessionManager = sessionManager;
-        this.mLocationManager = locationManager;
         this.mBudgetManager = budgetManager;
+        this.mGPSDataLoader = gpsDataLoader;
     }
 
     @Override
@@ -61,12 +58,11 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
 
     @Override
     public void onLoginSuccess(User user) {
-
         mSessionManager.createUserLoginSession(user.getUsername(), user.getTokeSession());
-        mLoginView.onLoginResult(true, 1);
-        mLocationManager.registerLocationValues(20.994212,-89.646084);
         mBudgetManager.registerBudgetValues(0,2000);
-        mLoginView.setProgressIndicator(false);
+        mGPSDataLoader.setOnLocationLoadedListener(this);
+        mGPSDataLoader.loadLastKnownLocation();
+       // mLocationManager.registerLocationValues(20.994212,-89.646084);
     }
 
     @Override
@@ -97,4 +93,10 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
     private final String NETWORK_ERROR = "Network error";
     private final String SERVER_ERROR = "Server error";
     private final String EMAIL_ERROR = "Correo o contraseña incorrecta";
+
+    @Override
+    public void onLocationLoadFinished(double lat, double lng) {
+        mLoginView.onLoginResult(true, 1);
+        mLoginView.setProgressIndicator(false);
+    }
 }

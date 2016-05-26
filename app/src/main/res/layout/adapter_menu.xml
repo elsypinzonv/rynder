@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+<android.support.v7.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        card_view:cardBackgroundColor="#ffff">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/menu_name"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:text="Nombre del menu"
+                android:textSize="28dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:text="@string/lbl_tx_menu"
+                android:textSize="16dp" />
+
+            <RelativeLayout
+                android:layout_height="200dp"
+                android:layout_margin="5dp"
+                android:layout_width="250dp">
+
+                <ImageView
+                    android:id="@+id/menu_item"
+                    android:layout_height="200dp"
+                    android:layout_width="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/login_background" />
+
+                <TextView
+                    android:id="@+id/menu_item_name"
+                    android:background="#AAFFFFFF"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:padding="10dp"
+                    android:text="Titulo de la comida"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/menu_item_price"
+                    android:background="@color/colorGreen"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="10dp"
+                    android:text="$100"
+                    android:textColor="@android:color/white"
+                    android:textSize="23dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/menu_item_description"
+                android:ellipsize="end"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:maxLines="3"
+                android:text="soy una descripción"
+                android:textColor="@color/black_overlay" />
+
+
+            <Button
+                android:background="@color/colorGreen"
+                android:id="@+id/show_menu"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:text="@string/lbl_btn_view_menu"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

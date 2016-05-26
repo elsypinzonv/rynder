@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.elsy.rynder.R;
 import com.elsy.rynder.modules.maps.MapActivity;
 import com.elsy.rynder.utils.ActivityHelper;
+import com.elsy.rynder.utils.GPSDataLoader;
 import com.elsy.rynder.utils.Injection;
 import com.elsy.rynder.utils.TextViewUtils;
 
@@ -37,8 +38,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mActionsListener = new LoginPresenter(this,
                 Injection.provideLoginInteractor(),
                 Injection.provideUserSessionManager(getApplicationContext()),
-                Injection.provideLocationPreferencesManager(getApplicationContext()),
-                Injection.provideBudgetPreferencesManager(getApplicationContext())
+                Injection.provideBudgetPreferencesManager(getApplicationContext()),
+                new GPSDataLoader(this,Injection.provideLocationPreferencesManager(this))
         );
 
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -102,4 +103,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         btn_login = (Button) findViewById(R.id.login);
         edit_username = (EditText) findViewById(R.id.username);
     }
+
+
 }

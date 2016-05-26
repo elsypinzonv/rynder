@@ -16,9 +16,10 @@ import com.elsy.rynder.R;
 import com.elsy.rynder.domain.Restaurant;
 import com.elsy.rynder.modules.budget.BudgetActivity;
 import com.elsy.rynder.modules.login.LoginActivity;
+import com.elsy.rynder.modules.restaurant_profile.RestaurantProfile;
 import com.elsy.rynder.utils.ActivityHelper;
 import com.elsy.rynder.utils.BeaconFindManager;
-import com.elsy.rynder.utils.GPSDataLoader;
+import com.elsy.rynder.utils.GPSManager;
 import com.elsy.rynder.utils.Injection;
 import com.elsy.rynder.utils.preferences_manager.LocationPreferencesManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     private Toolbar toolbar;
     private MapContract.UserActionsListener mActionsListener;
-    private GPSDataLoader gpsDataLoader;
+    private GPSManager gpsManager;
     private BeaconFindManager beaconFindManager;
     private ProgressDialog mProgressDialog;
     private SupportMapFragment mapFragment;
@@ -58,7 +60,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
         restaurantsMarks = new ArrayList<>();
         locationManager =Injection.provideLocationPreferencesManager(this);
         beaconFindManager = new BeaconFindManager(this, this);
-        gpsDataLoader = new GPSDataLoader(this, locationManager,this);
+        gpsManager = new GPSManager(this, locationManager,this);
         mActionsListener = new MapPresenter(
                 this,
                 Injection.provideRestaurantsInteractor(),
@@ -121,7 +123,10 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     @Override
     public void showRestaurantProfileUI(String id, Restaurant restaurant) {
-        //ActivityHelper.begin(this,);
+        Intent intent = new Intent().setClass(this, RestaurantProfile.class);
+        intent.putExtra("restaurantID", id);
+        intent.putExtra("restaurant", new Gson().toJson(restaurant));
+        startActivity(intent);
     }
 
 
@@ -147,6 +152,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
             case R.id.logout:
                 doLogout();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

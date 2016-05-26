@@ -3,6 +3,7 @@ package com.elsy.rynder.modules.restaurant_profile;
 import android.support.annotation.NonNull;
 import com.elsy.rynder.domain.Restaurant;
 import com.elsy.rynder.io.callbacks.RestaurantCallback;
+import com.elsy.rynder.io.interactor.RestaurantInteractor;
 import com.elsy.rynder.utils.preferences_manager.UserSessionManager;
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 

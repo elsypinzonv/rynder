@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,10 +21,11 @@ import com.elsy.rynder.domain.Menu;
 import com.elsy.rynder.domain.Restaurant;
 import com.elsy.rynder.domain.RestaurantPhone;
 import com.elsy.rynder.domain.Schedule;
+import com.elsy.rynder.modules.menu.MenuActivity;
 import com.elsy.rynder.utils.ActivityHelper;
 import com.elsy.rynder.utils.Injection;
 import com.google.gson.Gson;
-
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class RestaurantProfile extends AppCompatActivity implements RestaurantProfileContract.View {

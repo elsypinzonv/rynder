@@ -3,8 +3,10 @@ package com.elsy.rynder.utils;
 import android.content.Context;
 
 import com.elsy.rynder.io.interactor.LoginInteractor;
+import com.elsy.rynder.io.interactor.RestaurantInteractor;
 import com.elsy.rynder.io.interactor.RestaurantsInteractor;
 import com.elsy.rynder.io.services.LoginApiService;
+import com.elsy.rynder.io.services.RestaurantApiService;
 import com.elsy.rynder.io.services.RestaurantsApiService;
 import com.elsy.rynder.utils.preferences_manager.BudgetPreferencesManager;
 import com.elsy.rynder.utils.preferences_manager.LocationPreferencesManager;
@@ -22,9 +24,16 @@ public class Injection {
         return ServiceGenerator.createService(LoginApiService.class);
     }
 
-
     public static RestaurantsInteractor provideRestaurantsInteractor() {
         return new RestaurantsInteractor(provideRestaurantsApiService());
+    }
+
+    public static RestaurantInteractor provideRestaurantInteractor() {
+        return new RestaurantInteractor(provideRestaurantApiService());
+    }
+
+    private static RestaurantApiService provideRestaurantApiService() {
+        return ServiceGenerator.createService(RestaurantApiService.class);
     }
 
     private static RestaurantsApiService provideRestaurantsApiService() {

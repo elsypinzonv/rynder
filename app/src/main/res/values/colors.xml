@@ -10,4 +10,10 @@
     <color name="colorSecondaryText">#727272</color>
     <color name="colorTertiaryText">#FFFFFF</color>
 
+    <color name="colorGreenLigth">#B9D882</color>
+    <color name="colorGreen">#8BC34A</color>
+
+    <color name="colorBlack">#212121</color>
+    <color name="black_overlay">#66000000</color>
+
 </resources>

@@ -45,6 +45,7 @@
             android:name=".modules.login.LoginActivity"
             android:screenOrientation="portrait"
     android:theme="@style/SplashTheme" />
+
     <activity
     android:name=".modules.maps.MapActivity"
     android:theme="@style/AppTheme.NoActionBar"></activity>
@@ -55,7 +56,12 @@
 
     <activity
         android:name=".modules.restaurant_profile.RestaurantProfile"
-        android:theme="@style/Theme.Budget"></activity>
+        android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".modules.menu.MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
 
     </application>
 

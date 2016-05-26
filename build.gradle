@@ -31,4 +31,7 @@ ext {
     playServices = '8.4.0'
     edmodo = '1.0.0'
     picasso = '2.5.2'
+    rxjava = '1.0.14'
+    reactiveLocation = '0.8@aar'
+
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/colorSecondaryText"/>
+                    <padding
+                        android:bottom="100dp"
+                        android:left="100dp"
+                        android:right="100dp"
+                        android:top="100dp" />
+                </shape>
+            </item>
+            <item
+                android:drawable="@drawable/ic_view_dashboard"
+                android:width="10dp"
+                android:height="10dp"/>
+        </layer-list>
+    </item>
+
+</selector>

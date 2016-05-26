@@ -33,4 +33,11 @@ public class ApiConstants {
     //headers
     public static final String HEADER_RESPONSE_TOKEN = "token";
     public static final String HEADER_REQUEST_TOKEN = "Authorization";
+
+    public static final String RESTAURANT_PATH = "/restaurant";
+    public static final String RESTAURANT_DETAILS_PATH = RESTAURANT_PATH + "/details";
+    public static final String KEY_RESTAURANT_ID_PATH = "restaurantID";
+    public static final String RESTAURANT_ID_RELATIVE_PATH = "/{"+ KEY_RESTAURANT_ID_PATH +"}";
+    public static final String RESTAURANT_DETAIL_URL = BASE_API_URL + RESTAURANT_DETAILS_PATH + RESTAURANT_ID_RELATIVE_PATH;
+
 }
