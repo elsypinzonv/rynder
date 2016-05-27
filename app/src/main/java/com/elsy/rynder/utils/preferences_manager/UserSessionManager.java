@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.elsy.rynder.domain.Restaurant;
 import com.elsy.rynder.domain.User;
+import com.google.gson.Gson;
 
 
 public class UserSessionManager {
@@ -22,6 +24,10 @@ public class UserSessionManager {
 
     public static final String KEY_USERNAME = "KEY_USERNAME";
     public static final String KEY_SESSION_TOKEN = "KEY_SESSION_TOKEN";
+
+    public static final String IS_IN_RESTAURANT = "IS_IN_RESTAURANT";
+    public static final String KEY_RESTAURANT = "KEY_RESTAURANT";
+    public static final String KEY_RESTAURANT_ID = "KEY_RESTAURANT_ID";
 
     public UserSessionManager(Context context){
         this.mContext = context;
@@ -103,4 +109,31 @@ public class UserSessionManager {
         return userPreferences.getString(KEY_SESSION_TOKEN, null);
     }
 
- }
+    public boolean isInRestaurant(){
+        return userPreferences.getBoolean(IS_IN_RESTAURANT, false);
+    }
+
+    public void dropCurrentRestaurant(){
+        editor.remove(IS_IN_RESTAURANT);
+        editor.remove(KEY_RESTAURANT);
+        editor.remove(KEY_RESTAURANT_ID);
+        editor.commit();
+    }
+
+    public void setCurrentRestaurant(Restaurant restaurant){
+        editor.putBoolean(IS_IN_RESTAURANT, true);
+        editor.putString(KEY_RESTAURANT, new Gson().toJson(restaurant));
+        editor.putString(KEY_RESTAURANT_ID, restaurant.getId());
+        editor.commit();
+    }
+
+    public Restaurant getCurrentRestaurant(){
+        String restaurantJSON = userPreferences.getString(KEY_RESTAURANT, null);
+        return new Gson().fromJson(restaurantJSON, Restaurant.class);
+    }
+
+    public void setIsInRestaurant() {
+        editor.putBoolean(IS_IN_RESTAURANT, true);
+        editor.commit();
+    }
+}

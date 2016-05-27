@@ -60,8 +60,10 @@ public class RynderApplication extends Application {
             @Override
             public void onEnteredRegion(Region region, List<Beacon> list) {
                 Log.d(TAG, "Entrando a Region");
-                //mContentPreferencesManager.registerIsOnClassroom();
-                //showNotification("BIENVENIDO", "¿Listo para descargar la información de la aisgnatura?");
+
+                Injection
+                        .provideUserSessionManager(getApplicationContext())
+                        .setIsInRestaurant();
 
                 Restaurant restaurant = null;
 
@@ -73,17 +75,23 @@ public class RynderApplication extends Application {
                 }
 
                 if(restaurant != null) {
-                    sendToProfile(restaurant);
-                    //showRestaurantNotification(restaurant);
-                }
+                    Injection
+                            .provideUserSessionManager(getApplicationContext())
+                            .setCurrentRestaurant(restaurant);
 
+                    sendToProfile();
+                    showNotification("Bienvenido!", "Ahora puedes visualizar el perfil del restaurante");
+                }
 
             }
             @Override
             public void onExitedRegion(Region region) {
                 Log.d(TAG, "Saliendo de Region");
+                Injection
+                        .provideUserSessionManager(getApplicationContext())
+                        .dropCurrentRestaurant();
                 sendToMap();
-                showNotification("SALIDA","Acabas de salir del CC1. Nos vemos pronto");
+                showNotification("Adiós","Hasta luego, regresa pronto");
             }
 
 
@@ -96,34 +104,12 @@ public class RynderApplication extends Application {
         startActivity(intent);
     }
 
-    private void sendToProfile(Restaurant restaurant) {
+    private void sendToProfile() {
         Intent intent = new Intent(this, RestaurantProfile.class);
-        intent.putExtra("restaurantID", restaurant.getId());
-        intent.putExtra("restaurant", new Gson().toJson(restaurant));
+        //intent.putExtra("restaurantID", restaurant.getId());
+        //intent.putExtra("restaurant", new Gson().toJson(restaurant));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    private void showRestaurantNotification(Restaurant restaurant) {
-        Intent notifyIntent = new Intent(this, RestaurantProfile.class);
-        notifyIntent.putExtra("restaurantID", restaurant.getId());
-        notifyIntent.putExtra("restaurant", new Gson().toJson(restaurant));
-        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,
-                new Intent[] { notifyIntent }, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification = new Notification.Builder(this)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("BIENVENIDO")
-                .setContentText("Ahora puedes ver el perfil del restaurante más cercano")
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-                .build();
-        notification.defaults |= Notification.DEFAULT_SOUND;
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
     }
 
     public void showNotification(String title, String message) {

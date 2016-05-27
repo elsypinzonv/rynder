@@ -7,6 +7,7 @@ import com.elsy.rynder.domain.Restaurant;
 import com.elsy.rynder.io.callbacks.RestaurantsCallback;
 import com.elsy.rynder.io.interactor.RestaurantsInteractor;
 import com.elsy.rynder.utils.GetRestaurantUtil;
+import com.elsy.rynder.utils.Injection;
 import com.elsy.rynder.utils.preferences_manager.BudgetPreferencesManager;
 import com.elsy.rynder.utils.preferences_manager.LocationPreferencesManager;
 import com.elsy.rynder.utils.preferences_manager.UserSessionManager;
@@ -56,7 +57,8 @@ public class MapPresenter implements MapContract.UserActionsListener, Restaurant
 
     @Override
     public void openRestaurantProfile(List<Restaurant> restaurants) {
-        Restaurant restaurant = GetRestaurantUtil.getRestaurant(restaurants,mLocationPreferences.getLatitude(),mLocationPreferences.getLongitude());
+        Restaurant restaurant = GetRestaurantUtil.getRestaurant(mLocationPreferences.getLatitude(),mLocationPreferences.getLongitude());
+        mSessionManager.setCurrentRestaurant(restaurant);
         mView.showRestaurantProfileUI(restaurant.getId(),restaurant);
     }
 
@@ -68,7 +70,11 @@ public class MapPresenter implements MapContract.UserActionsListener, Restaurant
         mSessionManager.updateSessionToken(newToken);
 
         if(restaurants != null && !restaurants.isEmpty()){
-            mView.showRestaurants(restaurants);
+            if(mSessionManager.isInRestaurant()){
+                openRestaurantProfile(restaurants);
+            }else{
+                mView.showRestaurants(restaurants);
+            }
         } else {
             mView.showErrorMessage("No hay restaurantes para mostrar");
         }

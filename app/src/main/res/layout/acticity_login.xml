@@ -6,8 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@mipmap/login_background"
+
     tools:context=".modules.login.LoginActivity" >
+
+    <View
+        android:background="@mipmap/login_background"
+        android:alpha=".20"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </View>
 
     <TextView
         android:id="@+id/app_name"
@@ -36,7 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:hint="@string/hint_name"/>
+            android:hint="@string/hint_name"
+            android:textColorHint="@color/colorPrimaryLigth"/>
 
         <Button
             android:id="@+id/login"
@@ -48,8 +57,5 @@
             android:background="@color/colorPrimary"/>
 
     </LinearLayout>
-
-
-
 
 </RelativeLayout>

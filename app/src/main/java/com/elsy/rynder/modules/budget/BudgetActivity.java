@@ -27,7 +27,7 @@ public class BudgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
         initUI();
-       budgetPreferences = Injection.provideBudgetPreferencesManager(BudgetActivity.this);
+        budgetPreferences = Injection.provideBudgetPreferencesManager(BudgetActivity.this);
         initRangerBudget();
         ranger_budget.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
             @Override

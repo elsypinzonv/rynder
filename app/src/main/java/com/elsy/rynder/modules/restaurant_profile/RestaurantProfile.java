@@ -57,10 +57,12 @@ public class RestaurantProfile extends AppCompatActivity implements RestaurantPr
                 this, Injection.provideRestaurantInteractor(), Injection.provideUserSessionManager(this)
         );
 
-        mRestaurantID = getIntent().getStringExtra("restaurantID");
-        Gson gson = new Gson();
-        String restaurantStr = getIntent().getStringExtra("restaurant");
-        mRestaurant = gson.fromJson(restaurantStr, Restaurant.class);
+        //mRestaurantID = getIntent().getStringExtra("restaurantID");
+        ///Gson gson = new Gson();
+        //String restaurantStr = getIntent().getStringExtra("restaurant");
+        //mRestaurant = gson.fromJson(restaurantStr, Restaurant.class);
+        mRestaurant = Injection.provideUserSessionManager(getApplicationContext()).getCurrentRestaurant();
+        mRestaurantID = mRestaurant.getId();
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

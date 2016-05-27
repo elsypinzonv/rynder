@@ -3,14 +3,14 @@
 
     <!-- Splash Activity -->
     <string name="app_message">Your restaurant finder\n</string>
-    <string name="splash_footer">Made with love by <b>SnotSoft</b></string>
+    <string name="splash_footer">Hecho con <b>amor</b></string>
 
     <!-- Login -->
-    <string name="hint_name">Name</string>
+    <string name="hint_name">Nombre de usuario</string>
 
     <string name="lbl_login_sesion">Iniciando Sesión</string>
     <string name="empty_data_message">Lleno los campos</string>
-    <string name="lbl_btn_login">Login</string>
+    <string name="lbl_btn_login">Iniciar Sesión</string>
     <string name="lbl_loading_message">Cargando</string>
 
 

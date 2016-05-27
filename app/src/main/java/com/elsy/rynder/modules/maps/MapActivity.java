@@ -103,7 +103,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
             markRestaurant(restaurant);
         }
 
-        Toast.makeText(this,"actualizando restaurantes cercanos",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Mostrando restaurantes cercanos",Toast.LENGTH_LONG).show();
 
     }
 
@@ -127,9 +127,9 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     @Override
     public void showRestaurantProfileUI(String id, Restaurant restaurant) {
-        Intent intent = new Intent().setClass(this, RestaurantProfile.class);
-        intent.putExtra("restaurantID", id);
-        intent.putExtra("restaurant", new Gson().toJson(restaurant));
+        Intent intent = new Intent(this, RestaurantProfile.class);
+        //intent.putExtra("restaurantID", id);
+        //intent.putExtra("restaurant", new Gson().toJson(restaurant));
         startActivity(intent);
     }
 
@@ -155,9 +155,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
                 return true;
             case R.id.logout:
                 doLogout();
-
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -203,12 +201,16 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     private void markRestaurant(Restaurant restaurant){
         LatLng point = new LatLng(restaurant.getLocationLat(), restaurant.getLocationLng());
-       restaurantsMarks.add(mMap.addMarker(
+
+        Marker marker = mMap.addMarker(
                 new MarkerOptions()
                         .position(point)
                         .title(restaurant.getName()+"  $"+restaurant.getAveragePrice())
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-        ));
+
+        );
+        //marker.showInfoWindow();
+        restaurantsMarks.add(marker);
     }
 
     private void zoomToCurrentLatLngPosition(LatLng initialPoint) {
@@ -232,6 +234,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
                         .title(username)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_person))
         );
+        mMarker.showInfoWindow();
         zoomToCurrentLatLngPosition(initialPoint);
 }
 

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.elsy.rynder.modules.login.LoginActivity;
 import com.elsy.rynder.modules.maps.MapActivity;
+import com.elsy.rynder.modules.restaurant_profile.RestaurantProfile;
 import com.elsy.rynder.utils.ActivityHelper;
 import com.elsy.rynder.utils.TextViewUtils;
 import com.elsy.rynder.utils.preferences_manager.UserSessionManager;
@@ -33,8 +34,14 @@ public class SplashActivity extends AppCompatActivity {
     private void sendTo(){
         final UserSessionManager sessionManager = new UserSessionManager(SplashActivity.this);
         if(sessionManager.isUserLoggedIn()) {
-            ActivityHelper.sendTo(this, MapActivity.class);
-        }else  ActivityHelper.sendTo(this, LoginActivity.class);
+            if(sessionManager.isInRestaurant()){
+                ActivityHelper.sendTo(this, RestaurantProfile.class);
+            } else {
+                ActivityHelper.sendTo(this, MapActivity.class);
+            }
+        }else {
+            ActivityHelper.sendTo(this, LoginActivity.class);
+        }
     }
 
     private void initUI(){

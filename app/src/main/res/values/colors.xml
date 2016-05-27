@@ -6,6 +6,9 @@
     <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">#795548</color>
 
+    <color name="colorHunGrr">#FF9800</color>
+
+    <color name="colorTextIcons">#FFFFFF</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
     <color name="colorTertiaryText">#FFFFFF</color>

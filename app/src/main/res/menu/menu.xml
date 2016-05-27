@@ -5,13 +5,12 @@
         android:id="@+id/logout"
         android:orderInCategory="100"
         android:title="@string/lb_logout"
-        android:icon="@mipmap/ic_launcher"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/budget"
         android:orderInCategory="100"
         android:title="@string/lb_budget"
-        android:icon="@mipmap/ic_launcher"
-        app:showAsAction="withText" />
+        android:icon="@drawable/ic_action_budget"
+        app:showAsAction="always" />
 </menu>
