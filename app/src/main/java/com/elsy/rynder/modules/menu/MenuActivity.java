@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Toast;
 import com.elsy.rynder.R;
 import com.elsy.rynder.domain.Menu;
+import com.elsy.rynder.modules.restaurant_profile.RestaurantProfile;
 import com.elsy.rynder.ui.adapters.SectionsPagerAdapter;
+import com.elsy.rynder.utils.ActivityHelper;
 
 
 public class MenuActivity extends AppCompatActivity implements MenuContract.View {
@@ -70,5 +72,8 @@ public class MenuActivity extends AppCompatActivity implements MenuContract.View
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        ActivityHelper.sendTo(this, RestaurantProfile.class);
+    }
 }
