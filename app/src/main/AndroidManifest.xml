@@ -33,6 +33,7 @@
 
         <activity
             android:name=".SplashActivity"
+            android:noHistory="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,24 +43,27 @@
         </activity>
         <activity
             android:name=".modules.login.LoginActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait"
-    android:theme="@style/SplashTheme" />
+            android:theme="@style/SplashTheme" />
 
-    <activity
-    android:name=".modules.maps.MapActivity"
-    android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".modules.maps.MapActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
-    <activity
-    android:name=".modules.budget.BudgetActivity"
-    android:theme="@style/Theme.Budget"></activity>
+        <activity
+            android:name=".modules.restaurant_profile.RestaurantProfile"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
-    <activity
-        android:name=".modules.restaurant_profile.RestaurantProfile"
-        android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".modules.budget.BudgetActivity"
+            android:theme="@style/Theme.Budget"/>
 
         <activity
             android:name=".modules.menu.MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
 
     </application>

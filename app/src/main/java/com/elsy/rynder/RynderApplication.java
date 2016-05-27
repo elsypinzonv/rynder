@@ -105,9 +105,9 @@ public class RynderApplication extends Application {
     }
 
     private void sendToProfile() {
+        Log.d(TAG, "Openning profile from application class and notifacion");
         Intent intent = new Intent(this, RestaurantProfile.class);
-        //intent.putExtra("restaurantID", restaurant.getId());
-        //intent.putExtra("restaurant", new Gson().toJson(restaurant));
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
