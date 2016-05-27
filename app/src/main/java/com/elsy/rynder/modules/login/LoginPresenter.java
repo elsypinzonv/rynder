@@ -47,8 +47,8 @@ public class LoginPresenter implements LoginContract.UserActionsListener, LoginC
     }
 
     public void onValidationSucceeded(String username) {
-        tempEmail = "prueba@prueba.com";
-        tempPassword = "prueba";
+        tempEmail = "test@test.com";
+        tempPassword = "qwerty";
         tempEmail = tempEmail.trim().toString();
         tempPassword = tempPassword.trim().toString();
         mLoginView.setProgressIndicator(true);

@@ -59,7 +59,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
         initToolbar();
         restaurantsMarks = new ArrayList<>();
         locationManager =Injection.provideLocationPreferencesManager(this);
-        beaconFindManager = new BeaconFindManager(this, this);
+        //beaconFindManager = new BeaconFindManager(this, this);
         gpsManager = new GPSManager(this, locationManager,this);
         mActionsListener = new MapPresenter(
                 this,
@@ -80,7 +80,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     public void onDestroy(){
         super.onDestroy();
-        beaconFindManager.destroy();
+        //beaconFindManager.destroy();
     }
 
     @Override
@@ -219,11 +219,17 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
     }
 
     private void setupMarker() {
+
+        String username = Injection.provideUserSessionManager(getApplicationContext()).getUsername();
+        if(username == null){
+            username = "Mi ubicación";
+        }
+
         LatLng initialPoint = new LatLng(locationManager.getLatitude(), locationManager.getLongitude());
         this.mMarker = this.mMap.addMarker(
                 new MarkerOptions()
                         .position(initialPoint)
-                        .title("Mi ubicacion")
+                        .title(username)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_person))
         );
         zoomToCurrentLatLngPosition(initialPoint);

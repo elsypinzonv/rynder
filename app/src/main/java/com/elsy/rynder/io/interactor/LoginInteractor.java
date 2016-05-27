@@ -1,7 +1,9 @@
 package com.elsy.rynder.io.interactor;
 
+import android.util.Log;
 import android.widget.Toast;
 
+import com.elsy.rynder.RynderApplication;
 import com.elsy.rynder.domain.User;
 import com.elsy.rynder.io.callbacks.LoginCallback;
 import com.elsy.rynder.io.models.LoginResponse;
@@ -21,8 +23,11 @@ public class LoginInteractor {
 
     public void doLogin(final LoginCallback callback, final String email, final String password, final String userName){
 
+        Log.d(RynderApplication.TAG, "DOING LOGIN: " + email);
+
         final User user = new User(email, password);
         Call<LoginResponse> call = apiService.loginResult(user);
+        Log.d(RynderApplication.TAG, "ORIGINAL URL LOGIN REQ: " + call.request().toString());
 
         call.enqueue(new Callback<LoginResponse>() {
 
@@ -33,6 +38,7 @@ public class LoginInteractor {
 
                 if(response.isSuccessful()){
                     LoginResponse loginResponse = response.body();
+                    Log.d(RynderApplication.TAG, "LOGIN RESPONSE MSG: " + loginResponse.getMessage());
 
                     String tokenSession = response.headers().get(KEY_TOKEN);
                     if(tokenSession != null){
@@ -49,7 +55,7 @@ public class LoginInteractor {
                     try {
                         String messageError = response.errorBody().string();
                         callback.onFailedLogin(MESSAGE_DATA_ERROR);
-
+                        Log.d(RynderApplication.TAG, "LOGIN RESPONSE MSG: " + messageError);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

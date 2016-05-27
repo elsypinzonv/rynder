@@ -8,10 +8,10 @@ public class Schedule {
     private String weekDay;
 
     @SerializedName("open_hour")
-    private int openHour;
+    private String openHour;
 
     @SerializedName("close_hour")
-    private int closeHour;
+    private String closeHour;
 
     public String getWeekDay() {
         return weekDay;
@@ -21,19 +21,19 @@ public class Schedule {
         this.weekDay = weekDay;
     }
 
-    public int getOpenHour() {
+    public String getOpenHour() {
         return openHour;
     }
 
-    public void setOpenHour(int openHour) {
+    public void setOpenHour(String openHour) {
         this.openHour = openHour;
     }
 
-    public int getCloseHour() {
+    public String getCloseHour() {
         return closeHour;
     }
 
-    public void setCloseHour(int closeHour) {
+    public void setCloseHour(String closeHour) {
         this.closeHour = closeHour;
     }
 }
