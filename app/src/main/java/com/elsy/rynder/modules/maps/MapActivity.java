@@ -127,10 +127,7 @@ public class MapActivity extends AppCompatActivity implements MapContract.View, 
 
     @Override
     public void showRestaurantProfileUI(String id, Restaurant restaurant) {
-        Intent intent = new Intent(this, RestaurantProfile.class);
-        //intent.putExtra("restaurantID", id);
-        //intent.putExtra("restaurant", new Gson().toJson(restaurant));
-        startActivity(intent);
+        ActivityHelper.sendTo(this, RestaurantProfile.class);
     }
 
 
