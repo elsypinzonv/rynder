@@ -59,6 +59,7 @@
 
         <activity
             android:name=".modules.budget.BudgetActivity"
+            android:noHistory="true"
             android:theme="@style/Theme.Budget"/>
 
         <activity

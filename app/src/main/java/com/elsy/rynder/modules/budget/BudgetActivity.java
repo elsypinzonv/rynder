@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.edmodo.rangebar.RangeBar;
 import com.elsy.rynder.R;
+import com.elsy.rynder.modules.maps.MapActivity;
+import com.elsy.rynder.utils.ActivityHelper;
 import com.elsy.rynder.utils.Injection;
 import com.elsy.rynder.utils.preferences_manager.BudgetPreferencesManager;
 
@@ -47,7 +49,7 @@ public class BudgetActivity extends AppCompatActivity {
 
     private void goMap(){
         budgetPreferences.registerBudgetValues(getMin(),getMax());
-        finish();
+        ActivityHelper.begin(this, MapActivity.class);
     }
 
     private void updateValues(int leftThumbIndex, int rightThumbIndex){
@@ -97,4 +99,8 @@ public class BudgetActivity extends AppCompatActivity {
         ranger_left = (TextView) findViewById(R.id.left);
     }
 
+    @Override
+    public void onBackPressed() {
+        ActivityHelper.begin(this, MapActivity.class);
+    }
 }
