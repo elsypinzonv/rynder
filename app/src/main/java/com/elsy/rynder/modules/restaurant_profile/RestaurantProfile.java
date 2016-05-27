@@ -52,7 +52,7 @@ public class RestaurantProfile extends AppCompatActivity implements RestaurantPr
         initUI();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         mActionsListener = new RestaurantProfilePresenter(
                 this, Injection.provideRestaurantInteractor(), Injection.provideUserSessionManager(this)
         );
