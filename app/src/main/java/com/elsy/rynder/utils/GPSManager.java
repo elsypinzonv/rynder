@@ -28,10 +28,8 @@ public class GPSManager implements LocationListener {
     private LocationManager mManager;
     private MapContract.Location mActionListener;
     private boolean firstLocation;
-    private int STATE = 0;
-    private final int ON_DANGER = 2;
-    private final int ON_USABLE = 0;
-    protected final int APP_USABLE_RADIUS = 50;
+
+    protected final int APP_USABLE_RADIUS = 1000;
 
     public GPSManager(Context context, LocationPreferencesManager manager, MapContract.Location view) {
         mContext = context;

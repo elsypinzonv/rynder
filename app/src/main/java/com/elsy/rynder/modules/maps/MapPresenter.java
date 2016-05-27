@@ -56,7 +56,7 @@ public class MapPresenter implements MapContract.UserActionsListener, Restaurant
 
     @Override
     public void openRestaurantProfile(List<Restaurant> restaurants) {
-        Restaurant restaurant =GetRestaurantUtil.getRestaurant(restaurants,mLocationPreferences.getLatitude(),mLocationPreferences.getLongitude());
+        Restaurant restaurant = GetRestaurantUtil.getRestaurant(restaurants,mLocationPreferences.getLatitude(),mLocationPreferences.getLongitude());
         mView.showRestaurantProfileUI(restaurant.getId(),restaurant);
     }
 
@@ -64,7 +64,7 @@ public class MapPresenter implements MapContract.UserActionsListener, Restaurant
     @Override
     public void onRestaurantsLoaded(ArrayList<Restaurant> restaurants, String newToken) {
         mView.setProgressIndicator(false);
-
+        GetRestaurantUtil.setRestaurants(restaurants);
         mSessionManager.updateSessionToken(newToken);
 
         if(restaurants != null && !restaurants.isEmpty()){

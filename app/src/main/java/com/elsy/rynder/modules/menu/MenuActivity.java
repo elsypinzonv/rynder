@@ -54,7 +54,7 @@ public class MenuActivity extends AppCompatActivity implements MenuContract.View
         int postion = mViewPager.getCurrentItem();
         if(postion < size){
             mViewPager.setCurrentItem(postion+1);
-            Toast.makeText(this, "Avanzaste una página",Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Avanzaste una página",Toast.LENGTH_LONG).show();
         }else Toast.makeText(this, "No hay más paginas",Toast.LENGTH_LONG).show();
     }
 
@@ -63,8 +63,10 @@ public class MenuActivity extends AppCompatActivity implements MenuContract.View
         int postion = mViewPager.getCurrentItem();
         if(postion > 0){
             mViewPager.setCurrentItem(postion-1);
-            Toast.makeText(this, "Retrocediste una página",Toast.LENGTH_LONG).show();
-        }else Toast.makeText(this, "Estas en la primera pagina",Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Retrocediste una página",Toast.LENGTH_LONG).show();
+        }else{
+            //Toast.makeText(this, "Estas en la primera pagina",Toast.LENGTH_LONG).show();
+        }
 
     }
 

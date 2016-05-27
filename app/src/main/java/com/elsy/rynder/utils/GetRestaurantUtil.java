@@ -12,6 +12,27 @@ import java.util.List;
  */
 public class GetRestaurantUtil {
 
+    private static List<Restaurant> mRestaurantList;
+
+    public static void setRestaurants(List<Restaurant> restaurantsList){
+        mRestaurantList = restaurantsList;
+    }
+
+    public static Restaurant getRestaurant(double latitud, double longitud){
+        Restaurant rest;
+        rest = mRestaurantList.get(0);
+        float minDistance = getDistanceBetweenToPoints(latitud,longitud, rest.getLocationLat(), rest.getLocationLng());
+        float actualDistance;
+        for(Restaurant restaurant : mRestaurantList){
+            actualDistance=getDistanceBetweenToPoints(latitud,longitud,restaurant.getLocationLat(), restaurant.getLocationLng());
+            if(actualDistance<minDistance){
+                rest=restaurant;
+                minDistance=actualDistance;
+            }
+        }
+        return  rest;
+    }
+
     public static Restaurant getRestaurant(List<Restaurant> restaurantList, double latitud, double longitud){
         Restaurant rest;
         rest = restaurantList.get(0);
@@ -38,5 +59,9 @@ public class GetRestaurantUtil {
         );
         float currentDistance = results[0];
         return currentDistance;
+    }
+
+    public static List<Restaurant> getRestaurants() {
+        return mRestaurantList;
     }
 }
