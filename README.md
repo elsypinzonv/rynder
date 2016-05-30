@@ -1,8 +1,8 @@
 # Rynder.
 
-Rynder es una herramienta móvil para encontrar restaurantes cercanos a tu ubicación. Puedes encontrar y conocer la información de los restaurantes a tu alrededor de manera fácil y sencilla.
+Rynder es una herramienta móvil para encontrar restaurantes cercanos a tu ubicación. Puedes encontrar y conocer la información de los restaurantes a tu alrededor de manera fácil y sencilla. Para más información consultar la [Wiki](https://github.com/elsypinzonv/rynder/wiki) del proyecto.
 
-<img src="https://cloud.githubusercontent.com/assets/7050120/15656368/0aa4f176-266c-11e6-9e05-a0427216deca.jpg" alt="Splash" style="width: 150px;"/> <img src="https://cloud.githubusercontent.com/assets/7050120/15656371/0fc5a790-266c-11e6-8eca-f84964aaeb11.jpg" alt="Vista principal" style="width: 150px;"/> <img src="https://cloud.githubusercontent.com/assets/7050120/15656372/11746bda-266c-11e6-88b8-a69b7e47ece5.jpg" alt="Vista principal" style="width: 150px;"/>
+![Splash](https://cloud.githubusercontent.com/assets/7050120/15656368/0aa4f176-266c-11e6-9e05-a0427216deca.jpg)
 
 
 ## Equipo de Desarrollo.
